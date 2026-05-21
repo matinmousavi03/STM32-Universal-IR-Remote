@@ -1,0 +1,16 @@
+Debug/
+Release/
+*.o
+*.d
+*.elf
+*.hex
+*.bin
+*.map
+.settings/
+.cproject
+.project
+.mxproject
+*.launch
+*.bak
+*.swp
+.DS_Store
