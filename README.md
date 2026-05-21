@@ -1,6 +1,6 @@
-![Platform](https://img.shields.io/badge/platform-STM32-blue)
-![Language](https://img.shields.io/badge/language-C-green)
-![License](https://img.shields.io/badge/license-MIT-yellow)
+[![Platform](https://img.shields.io/badge/platform-STM32-blue)](https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html)
+[![Language](https://img.shields.io/badge/language-C-green)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
 # STM32 Universal IR Recorder & Replayer
 
