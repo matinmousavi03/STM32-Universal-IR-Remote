@@ -75,16 +75,20 @@ Custom linker script reserves dedicated Flash pages for persistent data:
 | Status LED         | PC13                          | Active LOW                                    |
 | Debug UART         | PA9 (TX), PA10 (RX)           | 115200 baud                                   |
 
-## Hardware Design Files
+## Hardware Prototype
 
-The complete Altium project files are available in the [`hardware/altium/`](hardware/altium/) folder.
+**Top layer:**  
+![Top layer](hardware/exports/top-layer.png)
 
-For quick reference:
-- **Combined schematic & PCB** – [PDF document](hardware/exports/schematic-&-pcb.pdf)
-- **PCB layer views**  
-  ![Top layer](hardware/exports/top-layer.png)  
-  ![Bottom layer](hardware/exports/bottom-layer.png)  
-  ![3D PCB view](hardware/exports/PCB-3D-top.png)
+<br>
+
+**Bottom layer:**  
+![Bottom layer](hardware/exports/bottom-layer.png)
+
+<br>
+
+**3D PCB view:**  
+![3D PCB view](hardware/exports/PCB-3D-top.png)
 
 ### Hardware Notes
 
