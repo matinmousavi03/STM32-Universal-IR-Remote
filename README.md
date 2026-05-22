@@ -96,11 +96,37 @@ Custom linker script reserves dedicated Flash pages for persistent data:
 **3D PCB view:**  
 ![3D PCB view](hardware/exports/PCB-3D-top.png)
 
+## PCB Errata & Design Tips
+
+The following hardware issues were identified in the current PCB revision. Workarounds and fixes for future revisions are provided below.
+
+### 1. IR LED Driver Transistor (Q1) – Footprint Swap
+- **Issue:** Base and emitter pins were swapped during routing. The base was connected to GND and the emitter to the PWM signal (TIM3_CH1), making the transistor inoperative.
+- **Workaround:** Physically rotate the transistor 180° before soldering (reverse orientation). This corrects the pinout.
+- **Fix for next revision:** Correct the footprint so that base connects to the MCU output and emitter goes to GND.
+
+### 2. UART Test Points (J5) & Keypad Connector (J3) Placement
+- **Issue:** 
+  - **J5 (UART – PA9, PA10):** Positioned too high on the board, difficult to access when mounted in an enclosure.
+  - **J3 (Keypad connector):** Unnecessary and placed poorly.
+- **Workaround:** 
+  - For J5: Use right‑angle (90°) pin headers or manually extend cables.
+  - For J3: Do not populate; directly solder keypad wires to the PCB or remove the connector footprint in the next revision.
+- **Fix for next revision:** 
+  - Move J5 lower on the board or use right‑angle headers.
+  - **Remove J3 entirely** – the keypad can be connected via separate wires or a different connector.
+
+### 3. Polygon Pour Clearance
+- **Issue:** Large copper pours with insufficient clearance to pads and traces make hand soldering difficult. Heat dissipates quickly, requiring higher soldering temperatures and increasing the risk of bridging.
+- **Recommendation:** Increase clearance to at least 0.3 mm (12 mil) or use thermal relief spokes (thermals) on pads connected to pours.
+- **Fix for next revision:** Adjust polygon clearance settings and verify thermal reliefs in the PCB layout.
+
 ### Hardware Notes
 
 - **TIM2 input capture is remapped to PA15** (`__HAL_AFIO_REMAP_TIM2_PARTIAL_1()`) because PA0 is reserved for the STANDBY wake‑up pin (WKUP). The IR receiver is physically connected to PA15.
 - PA0 is configured as a pull‑down input and used only for waking up from STANDBY (EXTI line 0).
 - The keypad uses PB15 as its fourth column – **no conflict** with the IR input. All column pins (PB3, PB4, PB5, PB15) have internal pull‑ups and trigger EXTI interrupts for scanning.
+- 
 
 ## Building the Project
 
@@ -139,14 +165,6 @@ Custom linker script reserves dedicated Flash pages for persistent data:
 - **Debouncing** – Only simple software debounce (40 ms in EXTI callback). Very fast double‑presses may be missed, but fine for typical user input.
 - **Flash write during capture** – Erasing/programming disables TIM2 and TIM4 interrupts for a few milliseconds. In noisy environments, a capture edge could be lost. A future improvement would be double‑buffering or a background Flash task.
 - **EXTI interrupt priority** – Must be **lower than TIM2 capture priority** to avoid race conditions. In this project, EXTI priority is set to 2, TIM2 priority to 1 (configurable via `HAL_NVIC_SetPriority`).
-
-## Future Improvements (planned)
-
-- GIF demo of the device in action
-- Oscilloscope screenshots of IR waveforms
-- 3D renders of the PCB
-- Architecture diagram (state machine + timer flow)
-- Clean, linear commit history
 
 ## References
 
