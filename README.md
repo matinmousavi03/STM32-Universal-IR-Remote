@@ -75,6 +75,12 @@ Custom linker script reserves dedicated Flash pages for persistent data:
 | Status LED         | PC13                          | Active LOW                                    |
 | Debug UART         | PA9 (TX), PA10 (RX)           | 115200 baud                                   |
 
+## Schematic
+
+![Schematic](hardware/exports/schematic.png)
+
+*Complete schematic of IR receiver, transmitter, keypad, and STM32 connections*
+
 ## Hardware Prototype
 
 **Top layer:**  
